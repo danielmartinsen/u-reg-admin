@@ -3,21 +3,3 @@ $white: #f1f2fa;
 $red: #fa8a8a;
 $green: #a6d89b;
 $beige: #ecbfa0;
-
-.loginBtn {
-  padding: 20px;
-  outline: none;
-  border: none;
-  border-radius: none;
-
-  background-color: $dark;
-  color: $white;
-  font-size: 25px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: $red;
-    color: $dark;
-    cursor: pointer;
-  }
-}

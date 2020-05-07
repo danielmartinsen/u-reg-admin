@@ -1,7 +1,7 @@
 import React from 'react'
+import Link from 'next/link'
 
 import Layout from '../components/layout'
-import Link from 'next/link'
 import { useFetchUser } from '../lib/user'
 import styles from '../styles/index.module.scss'
 
@@ -10,23 +10,6 @@ export default function Home() {
 
   return (
     <Layout user={user} loading={loading}>
-      <h1>Administrasjonspanel</h1>
-
-      {!user && (
-        <Link href='/api/login'>
-          <button className={styles.loginBtn}>Trykk her for å logge inn</button>
-        </Link>
-      )}
-
-      {user && (
-        <>
-          <Link href='/api/logout'>
-            <button className={styles.loginBtn}>Logg ut</button>
-          </Link>
-          <p>Velkommen, {user.name}</p>
-        </>
-      )}
-
       {loading && <p>Loading...</p>}
     </Layout>
   )
