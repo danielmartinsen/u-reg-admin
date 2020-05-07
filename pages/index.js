@@ -21,7 +21,7 @@ export default function Home() {
       {user && (
         <>
           <Link href='/api/logout'>
-            <button className={styles.loginBtn}>Trykk her for å logge inn</button>
+            <button className={styles.loginBtn}>Logg ut</button>
           </Link>
           <p>Velkommen, {user.name}</p>
         </>
