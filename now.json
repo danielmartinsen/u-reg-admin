@@ -1,8 +1,8 @@
 {
   "build": {
     "env": {
-      "AUTH0_DOMAIN": "br-reg-admin.eu.auth0.com",
-      "AUTH0_CLIENT_ID": "FST3fuKmXTqrQntu2tmwrfQzKjCmicm1",
+      "AUTH0_DOMAIN": "martinsendev.eu.auth0.com",
+      "AUTH0_CLIENT_ID": "fTEPm2uirBh765DdtdYS9880Z5Df39sd",
       "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
       "REDIRECT_URI": "https://bruker-reg-system-admin.now.sh/api/callback",
       "POST_LOGOUT_REDIRECT_URI": "https://bruker-reg-system-admin.now.sh/",
