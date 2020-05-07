@@ -6,7 +6,7 @@ import { useFetchUser } from '../lib/user'
 import styles from '../styles/index.module.scss'
 
 export default function Home() {
-  const { user, loading } = useFetchUser({ required: true })
+  const { user, loading } = useFetchUser()
 
   return (
     <Layout user={user} loading={loading}>
