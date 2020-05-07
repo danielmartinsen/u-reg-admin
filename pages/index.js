@@ -11,17 +11,23 @@ export default function Home() {
   return (
     <Layout user={user} loading={loading}>
       <h1>Administrasjonspanel</h1>
-      <Link href='/api/login'>
-        <button className={styles.loginBtn}>Trykk her for å logge inn</button>
-      </Link>
 
-      {loading && <p>Loading...</p>}
+      {!user && (
+        <Link href='/api/login'>
+          <button className={styles.loginBtn}>Trykk her for å logge inn</button>
+        </Link>
+      )}
 
       {user && (
         <>
+          <Link href='/api/logout'>
+            <button className={styles.loginBtn}>Trykk her for å logge inn</button>
+          </Link>
           <p>Velkommen, {user.name}</p>
         </>
       )}
+
+      {loading && <p>Loading...</p>}
     </Layout>
   )
 }
