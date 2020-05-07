@@ -19,7 +19,7 @@ export default function Home() {
 
       {user && (
         <>
-          <p>Velkommen, {user.name}!</p>
+          <p>Velkommen, {user.name}</p>
         </>
       )}
     </Layout>
