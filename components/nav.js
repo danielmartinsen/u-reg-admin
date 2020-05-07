@@ -18,6 +18,9 @@ export default function Nav({ user, loading }) {
 
         {user && (
           <>
+            <Link href='/'>
+              <button>Hjem</button>
+            </Link>
             <Link href='/add'>
               <button>Legg til kunde</button>
             </Link>
