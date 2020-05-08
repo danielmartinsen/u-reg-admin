@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Layout user={user} loading={loading}>
       {loading && <p>Loading...</p>}
-      <Table />
+      {user && <Table />}
     </Layout>
   )
 }
