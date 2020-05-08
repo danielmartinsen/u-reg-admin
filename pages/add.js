@@ -8,7 +8,8 @@ export default function Add() {
 
   return (
     <Layout user={user} loading={loading}>
-      <Form />
+      {loading && <p>Loading...</p>}
+      {user && <Form />}
     </Layout>
   )
 }
