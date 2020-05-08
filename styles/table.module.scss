@@ -1,0 +1,27 @@
+$dark: #0f152d;
+$white: #f1f2fa;
+$red: #fa8a8a;
+$green: #a6d89b;
+$beige: #ecbfa0;
+
+.tableHeader {
+  background-color: $red;
+
+  th {
+    font-weight: bold;
+    color: $dark;
+  }
+}
+
+.tableBody {
+  span {
+    font-size: 22px;
+    margin: 0px 8px;
+    color: $dark;
+
+    &:hover {
+      color: $red;
+      cursor: pointer;
+    }
+  }
+}
