@@ -25,7 +25,9 @@ export default function Row({ row }) {
         <TableCell>{row.kommune}</TableCell>
         <TableCell>{row.gyldighet}</TableCell>
         <TableCell>
-          <a href={row.domene}>{row.domene}</a>
+          <a href={row.domene} target='_blank'>
+            {row.domene}
+          </a>
         </TableCell>
       </TableRow>
 

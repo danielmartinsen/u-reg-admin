@@ -19,7 +19,7 @@ const rows = [
     domene: 'https://br-reg-midtgard.now.sh',
     fakturaadresse: 'Skoleveien 1, 1435 Ås',
     kontaktperson: [
-      { navn: 'Nicklas Erdal', epost: 'nicklas.erdal.as.kommune.no', telefon: '95533123' },
+      { navn: 'Nicklas Erdal', epost: 'nicklas.erdal@as.kommune.no', telefon: '95533123' },
     ],
     lisens: [{ key: 'j4b1FLkDQtSITyNMn2KDkAKFQrt5pNUm', dato: '09.05.2021' }],
   },
