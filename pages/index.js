@@ -14,6 +14,11 @@ export default function Home() {
       {loading && <p>Loading...</p>}
       {!user && <p>Vennligst logg inn</p>}
       {user && <Table />}
+      {user && (
+        <p>
+          Logget inn som <b>{user.name}</b>
+        </p>
+      )}
     </Layout>
   )
 }
