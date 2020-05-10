@@ -25,3 +25,33 @@ $beige: #ecbfa0;
     }
   }
 }
+
+.infoBox {
+  display: flex;
+
+  div {
+    margin-right: auto;
+  }
+
+  button {
+    display: block;
+  }
+}
+
+.kundeBtn {
+  padding: 8px 28px;
+  margin-right: 10px;
+  border: none;
+  border-radius: none;
+  outline: none;
+
+  font-size: 18px;
+  background-color: $beige;
+  color: $dark;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $red;
+    cursor: pointer;
+  }
+}
