@@ -12,6 +12,21 @@ import styles from '../styles/table.module.scss'
 
 export default function Row({ row }) {
   const [open, setOpen] = React.useState(false)
+  var gyldighet = 'Gyldig'
+
+  const dato = new Date()
+  const idagDato = dato.getFullYear() + `${dato.getMonth() + 1}` + dato.getDate()
+  const lisensDato = new Date(row.lisens.dato)
+
+  const lisensDatoFormattet =
+    lisensDato.getFullYear() + `${lisensDato.getMonth() + 1}` + lisensDato.getDate()
+
+  const lisensDatoReadable =
+    lisensDato.getDate() + '.' + `${lisensDato.getMonth() + 1}` + '.' + lisensDato.getFullYear()
+
+  if (lisensDatoFormattet < idagDato) {
+    gyldighet = 'Ikke gyldig'
+  }
 
   return (
     <React.Fragment>
@@ -23,7 +38,7 @@ export default function Row({ row }) {
         </TableCell>
         <TableCell>{row.navn}</TableCell>
         <TableCell>{row.kommune}</TableCell>
-        <TableCell>{row.gyldighet}</TableCell>
+        <TableCell>{gyldighet}</TableCell>
         <TableCell>
           <a href={row.domene} target='_blank'>
             {row.domene}
@@ -38,13 +53,11 @@ export default function Row({ row }) {
               <div className={styles.infoBox}>
                 <div>
                   <h2>Informasjon</h2>
-                  {row.lisens.map((lisensRow) => (
-                    <p key={`${row.navn} "-lisens"`}>
-                      <b>Lisens:</b>
-                      <license className={styles.licenseTag}> {lisensRow.key} </license>
-                      <i>(Utgår {lisensRow.dato})</i>
-                    </p>
-                  ))}
+                  <p>
+                    <b>Lisens:</b>
+                    <license className={styles.licenseTag}> {row.lisens.key}</license>
+                    <i> (Utgår {lisensDatoReadable})</i>
+                  </p>
                   <p>
                     <b>Fakturaadresse:</b> {row.fakturaadresse}
                   </p>
@@ -52,19 +65,17 @@ export default function Row({ row }) {
 
                 <div>
                   <h2>Kontaktperson</h2>
-                  {row.kontaktperson.map((kontaktpersonRow) => (
-                    <div key={`${row.navn} "-kontaktperson"`}>
-                      <p>
-                        <b>Navn:</b> {kontaktpersonRow.navn}
-                      </p>
-                      <p>
-                        <b>E-post:</b> {kontaktpersonRow.epost}
-                      </p>
-                      <p>
-                        <b>Telefon:</b> {kontaktpersonRow.telefon}
-                      </p>
-                    </div>
-                  ))}
+                  <div>
+                    <p>
+                      <b>Navn:</b> {row.kontaktperson.navn}
+                    </p>
+                    <p>
+                      <b>E-post:</b> {row.kontaktperson.epost}
+                    </p>
+                    <p>
+                      <b>Telefon:</b> {row.kontaktperson.telefon}
+                    </p>
+                  </div>
                 </div>
               </div>
 
