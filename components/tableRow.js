@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Box from '@material-ui/core/Box'
 import Collapse from '@material-ui/core/Collapse'
@@ -8,11 +8,15 @@ import TableRow from '@material-ui/core/TableRow'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 
+import { loadFirebase } from '../lib/firebase'
 import styles from '../styles/table.module.scss'
 
 export default function Row({ row }) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   var gyldighet = 'Gyldig'
+
+  const firebase = loadFirebase()
+  const db = firebase.firestore()
 
   const dato = new Date()
   const idagDato = dato.getFullYear() + `${dato.getMonth() + 1}` + dato.getDate()
@@ -26,6 +30,10 @@ export default function Row({ row }) {
 
   if (lisensDatoFormattet < idagDato) {
     gyldighet = 'Ikke gyldig'
+  }
+
+  function actionDelete(lisensKey) {
+    db.collection('Kunder').doc(lisensKey).delete()
   }
 
   return (
@@ -54,9 +62,9 @@ export default function Row({ row }) {
                 <div>
                   <h2>Informasjon</h2>
                   <p>
-                    <b>Lisens:</b>
-                    <license className={styles.licenseTag}> {row.lisens.key}</license>
-                    <i> (Utgår {lisensDatoReadable})</i>
+                    <b>Lisens: </b>
+                    <i className={styles.licenseTag}>{row.lisens.key}</i>
+                    &nbsp;(Utgår {lisensDatoReadable})
                   </p>
                   <p>
                     <b>Fakturaadresse:</b> {row.fakturaadresse}
@@ -81,7 +89,9 @@ export default function Row({ row }) {
 
               <button className={styles.kundeBtn}>Endre</button>
               <button className={styles.kundeBtn}>Forny</button>
-              <button className={styles.kundeBtn}>Slett</button>
+              <button className={styles.kundeBtn} onClick={(e) => actionDelete(row.lisens.key, e)}>
+                Slett
+              </button>
             </Box>
           </Collapse>
         </TableCell>

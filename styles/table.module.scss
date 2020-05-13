@@ -62,6 +62,8 @@ $beige: #ecbfa0;
 
 .licenseTag {
   user-select: all;
+  line-height: 0;
+  display: inline;
 
   &::selection {
     background: $red;

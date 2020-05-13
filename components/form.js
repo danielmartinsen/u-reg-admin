@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import randomstring from 'randomstring'
 import styles from '../styles/form.module.scss'
@@ -7,6 +7,7 @@ import { loadFirebase } from '../lib/firebase'
 
 export default function Form() {
   const { register, handleSubmit } = useForm()
+  const [formCompleted, handleComplete] = useState(false)
   const license = randomstring.generate(32)
 
   const firebase = loadFirebase()
@@ -39,11 +40,18 @@ export default function Form() {
       navn: data.navn,
       registrert: idagDato,
     }
-    db.collection('Kunder').doc(data.key).set(kundeData)
+
+    db.collection('Kunder')
+      .doc(data.key)
+      .set(kundeData)
+      .then((ref) => {
+        handleComplete(true)
+        document.getElementById('kundeForm').reset()
+      })
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} id='kundeForm' className={styles.form}>
       <div className={styles.formContainer}>
         <p>Kommunen</p>
         <input type='text' placeholder='Navn' name='navn' ref={register} required />
@@ -79,6 +87,14 @@ export default function Form() {
       </div>
 
       <input type='submit' value='Legg til' />
+
+      {formCompleted ? (
+        <div className={styles.formFeedback}>
+          <p>Kunden er registrert!</p>
+        </div>
+      ) : (
+        ''
+      )}
     </form>
   )
 }

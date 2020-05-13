@@ -59,3 +59,14 @@ $beige: #ecbfa0;
     margin: 0;
   }
 }
+
+.formFeedback {
+  flex-basis: 100%;
+  padding: 5px 20px;
+  display: inline;
+  background-color: $green;
+  border-radius: 10px;
+
+  color: $dark;
+  font-weight: bold;
+}
