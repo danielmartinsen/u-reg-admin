@@ -4,8 +4,8 @@
       "AUTH0_DOMAIN": "martinsendev.eu.auth0.com",
       "AUTH0_CLIENT_ID": "fTEPm2uirBh765DdtdYS9880Z5Df39sd",
       "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
-      "REDIRECT_URI": "https://br-reg-admin.now.sh/api/callback",
-      "POST_LOGOUT_REDIRECT_URI": "https://br-reg-admin.now.sh/",
+      "REDIRECT_URI": "https://bruker-reg-system-admin.now.sh/api/callback",
+      "POST_LOGOUT_REDIRECT_URI": "https://bruker-reg-system-admin.now.sh/",
       "SESSION_COOKIE_SECRET": "@session_cookie_secret",
       "SESSION_COOKIE_LIFETIME": "7200"
     }
