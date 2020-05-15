@@ -87,7 +87,7 @@ export default function Row({ row }) {
                 </div>
               </div>
 
-              <button className={styles.kundeBtn}>Endre</button>
+              {/* <button className={styles.kundeBtn}>Endre</button> */}
               <button className={styles.kundeBtn}>Forny</button>
               <button className={styles.kundeBtn} onClick={(e) => actionDelete(row.lisens.key, e)}>
                 Slett

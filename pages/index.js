@@ -38,6 +38,8 @@ export async function getServerSideProps(context) {
 
 export default function Home({ result }) {
   const { user, loading } = useFetchUser()
+  console.log(user)
+
   return (
     <Layout user={user} loading={loading}>
       {loading && <p>Loading...</p>}
