@@ -6,13 +6,12 @@ import { useFetchUser } from '../lib/user'
 
 import { loadFirebase } from '../lib/firebase'
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const firebase = await loadFirebase()
   const db = firebase.firestore()
 
   const result = await new Promise((resolve, reject) => {
     db.collection('Kunder')
-      .limit(10)
       .get()
       .then((snapshot) => {
         const data = []
@@ -30,7 +29,7 @@ export async function getServerSideProps(context) {
         resolve(data)
       })
       .catch((error) => {
-        reject([])
+        console.log(error)
       })
   })
   return { props: { result } }
@@ -38,13 +37,13 @@ export async function getServerSideProps(context) {
 
 export default function Home({ result }) {
   const { user, loading } = useFetchUser()
-  console.log(user)
-
   return (
     <Layout user={user} loading={loading}>
       {loading && <p>Loading...</p>}
       {!user && <p>Vennligst logg inn</p>}
+
       {user && <Table data={result} />}
+
       {user && (
         <p>
           Logget inn som <b>{user.name}</b>

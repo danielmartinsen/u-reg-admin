@@ -33,7 +33,29 @@ export default function Row({ row }) {
   }
 
   function actionDelete(lisensKey) {
-    db.collection('Kunder').doc(lisensKey).delete()
+    if (confirm('Helt sikker på at du vil slette denne kunden?')) {
+      db.collection('Kunder').doc(lisensKey).delete()
+    }
+  }
+
+  function actionRenew(lisensKey) {
+    var renewYear = parseInt(prompt('Hvor mange år vil du fornye med?'))
+
+    if (renewYear) {
+      var getLisensDato = new Date(row.lisens.dato)
+      var newLisensDato = new Date()
+
+      newLisensDato =
+        `${getLisensDato.getMonth() + 1}` +
+        '-' +
+        getLisensDato.getDate() +
+        '-' +
+        `${getLisensDato.getFullYear() + renewYear}`
+
+      db.collection('Kunder')
+        .doc(lisensKey)
+        .update({ lisens: { key: lisensKey, dato: newLisensDato } })
+    }
   }
 
   return (
@@ -88,8 +110,10 @@ export default function Row({ row }) {
               </div>
 
               {/* <button className={styles.kundeBtn}>Endre</button> */}
-              <button className={styles.kundeBtn}>Forny</button>
-              <button className={styles.kundeBtn} onClick={(e) => actionDelete(row.lisens.key, e)}>
+              <button className={styles.kundeBtn} onClick={() => actionRenew(row.lisens.key)}>
+                Forny
+              </button>
+              <button className={styles.kundeBtn} onClick={() => actionDelete(row.lisens.key)}>
                 Slett
               </button>
             </Box>

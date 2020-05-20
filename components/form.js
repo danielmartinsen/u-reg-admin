@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import randomstring from 'randomstring'
-import styles from '../styles/form.module.scss'
 
+import styles from '../styles/form.module.scss'
 import { loadFirebase } from '../lib/firebase'
 
 export default function Form() {
