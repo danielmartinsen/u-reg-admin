@@ -9,14 +9,14 @@
       "SESSION_COOKIE_SECRET": "@session_cookie_secret",
       "SESSION_COOKIE_LIFETIME": "7200",
 
-      "FIREBASE_API_KEY": "AIzaSyCrjZ1abF-7cMeK8LFoiU55xLtBM-8RmLw",
+      "FIREBASE_API_KEY": "@firebase_api_key",
       "FIREBASE_AUTH_DOMAIN": "bruker-reg-system.firebaseapp.com",
       "FIREBASE_DATABASE_URL": "https://bruker-reg-system.firebaseio.com",
       "FIREBASE_PROJECT_ID": "bruker-reg-system",
       "FIREBASE__STORAGE_BUCKET": "bruker-reg-system.appspot.com",
-      "FIREBASE_MESSAGING_SENDER_ID": "766232656302",
-      "FIREBASE_APP_ID": "1:766232656302:web:91df0f81a20816e63ab03f",
-      "FIREBASE_MEASUREMENT_ID": "G-JQ6VZSDX5J"
+      "FIREBASE_MESSAGING_SENDER_ID": "@firebase_messaging_sender_id",
+      "FIREBASE_APP_ID": "@firebase_app_id",
+      "FIREBASE_MEASUREMENT_ID": "@firebase_measurement_id"
     }
   }
 }
