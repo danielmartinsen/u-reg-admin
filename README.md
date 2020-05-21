@@ -2,7 +2,7 @@
 
 ![Demoimage](project-illustration.svg)
 
-> Easy check in and user management system for youth clubs in Norway. Get advanced statistics and insights to usage. Made in Norway with love for simplification.
+> Administrationpanel for user registration management system. Easy check in and user management system for youth clubs in Norway. Get advanced statistics and insights to usage. Made in Norway with love for simplification.
 
 **Version 1.0.0**
 
