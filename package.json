@@ -1,11 +1,11 @@
 {
-  "name": "bruker-reg-system-admin",
+  "name": "br-reg-admin",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
-  "author": "",
+  "author": "Daniel Martinsen",
   "license": "MIT",
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.6.0",
