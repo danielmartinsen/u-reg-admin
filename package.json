@@ -1,9 +1,12 @@
 {
   "name": "br-reg-admin",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "vercel",
+    "deploy-prod": "vercel --prod"
   },
   "author": "Daniel Martinsen",
   "license": "MIT",
