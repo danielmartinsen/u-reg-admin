@@ -8,7 +8,7 @@ import { loadFirebase } from '../lib/firebase'
 export default function Form() {
   const { register, handleSubmit } = useForm()
   const [formCompleted, handleComplete] = useState(false)
-  const license = randomstring.generate(32)
+  const license = randomstring.generate(16)
 
   const firebase = loadFirebase()
   const db = firebase.firestore()
@@ -83,7 +83,15 @@ export default function Form() {
           disabled
         />
         <input type='number' placeholder='Gyldighet (år)' name='ar' ref={register} required />
-        <input type='text' placeholder='Domene' name='domene' ref={register} required />
+        <input
+          type='text'
+          placeholder='Domene'
+          name='domene'
+          value={'https://ureg-' + license + '.now.sh'}
+          ref={register}
+          required
+          disabled
+        />
       </div>
 
       <input type='submit' value='Legg til' />
