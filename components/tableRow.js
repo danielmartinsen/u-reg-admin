@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import Router from 'next/router'
 
 import Box from '@material-ui/core/Box'
 import Collapse from '@material-ui/core/Collapse'
@@ -55,6 +56,8 @@ export default function Row({ row }) {
       db.collection('Kunder')
         .doc(lisensKey)
         .update({ lisens: { key: lisensKey, dato: newLisensDato } })
+
+      Router.push('/')
     }
   }
 

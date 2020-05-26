@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 
 import Layout from '../components/layout'
 import Table from '../components/table'
 import { useFetchUser } from '../lib/user'
 
 import { loadFirebase } from '../lib/firebase'
+import { FetchContext } from '../lib/context'
 
 export async function getServerSideProps() {
   const firebase = await loadFirebase()
@@ -13,10 +14,10 @@ export async function getServerSideProps() {
   const result = await new Promise((resolve, reject) => {
     db.collection('Kunder')
       .get()
-      .then((snapshot) => {
+      .then(snapshot => {
         const data = []
 
-        snapshot.forEach((doc) => {
+        snapshot.forEach(doc => {
           data.push(
             Object.assign(
               {
@@ -28,7 +29,7 @@ export async function getServerSideProps() {
         })
         resolve(data)
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error)
       })
   })
@@ -37,18 +38,22 @@ export async function getServerSideProps() {
 
 export default function Home({ result }) {
   const { user, loading } = useFetchUser()
+  const [fetchState, setFetchState] = useState(false)
+
   return (
-    <Layout user={user} loading={loading}>
-      {loading && <p>Loading...</p>}
-      {!user && <p>Vennligst logg inn</p>}
+    <FetchContext.Provider value={[fetchState, setFetchState]}>
+      <Layout user={user} loading={loading}>
+        {loading && <p>Loading...</p>}
+        {!user && <p>Vennligst logg inn</p>}
 
-      {user && <Table data={result} />}
+        {user && <Table data={result} />}
 
-      {user && (
-        <p>
-          Logget inn som <b>{user.name}</b>
-        </p>
-      )}
-    </Layout>
+        {user && (
+          <p>
+            Logget inn som <b>{user.name}</b>
+          </p>
+        )}
+      </Layout>
+    </FetchContext.Provider>
   )
 }

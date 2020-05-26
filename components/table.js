@@ -12,6 +12,8 @@ import styles from '../styles/table.module.scss'
 import Row from './tableRow'
 
 export default function kundeTable({ data }) {
+  console.log(data)
+
   return (
     <TableContainer component={Paper}>
       <Table>
