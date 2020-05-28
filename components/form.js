@@ -98,7 +98,14 @@ export default function Form() {
           disabled
         />
         <input type='number' placeholder='Gyldighet (år)' name='ar' ref={register} required />
-        <input type='text' placeholder='Domene' name='domene' ref={register} required />
+        <input
+          type='text'
+          placeholder='Domene'
+          name='domene'
+          ref={register}
+          value='https://ureg.now.sh'
+          required
+        />
       </div>
 
       <input type='submit' value='Legg til' />
