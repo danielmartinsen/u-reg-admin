@@ -36,6 +36,16 @@ export default function Row({ row }) {
   function actionDelete(lisensKey) {
     if (confirm('Helt sikker på at du vil slette denne kunden?')) {
       db.collection('Kunder').doc(lisensKey).delete()
+
+      var brukereDel = db.collection('Kunder').doc(lisensKey).collection('Brukere').limit(10)
+      var ansatteDel = db.collection('Kunder').doc(lisensKey).collection('Ansatte').limit(10)
+      var tavleDel = db.collection('Kunder').doc(lisensKey).collection('Tavle').limit(10)
+
+      return new Promise((resolve, reject) => {
+        deleteQueryBatch(brukereDel, resolve, reject)
+        deleteQueryBatch(ansatteDel, resolve, reject)
+        deleteQueryBatch(tavleDel, resolve, reject)
+      })
     }
   }
 
@@ -59,6 +69,36 @@ export default function Row({ row }) {
 
       Router.push('/')
     }
+  }
+
+  function deleteQueryBatch(query, resolve, reject) {
+    query
+      .get()
+      .then((snapshot) => {
+        if (snapshot.size === 0) {
+          return 0
+        }
+
+        const batch = db.batch()
+        snapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref)
+        })
+
+        return batch.commit().then(() => {
+          return snapshot.size
+        })
+      })
+      .then((numDeleted) => {
+        if (numDeleted === 0) {
+          resolve()
+          return
+        }
+
+        process.nextTick(() => {
+          deleteQueryBatch(query, resolve, reject)
+        })
+      })
+      .catch(reject)
   }
 
   return (
