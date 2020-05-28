@@ -41,13 +41,28 @@ export default function Form() {
       registrert: idagDato,
     }
 
-    db.collection('Kunder')
-      .doc(data.key)
-      .set(kundeData)
-      .then((ref) => {
-        handleComplete(true)
-        document.getElementById('kundeForm').reset()
-      })
+    const kundeRef = db.collection('Kunder').doc(data.key)
+    const brukereRef = db.collection('Kunder').doc(data.key).collection('Brukere').doc('--stats--')
+    const displayRef = db.collection('Kunder').doc(data.key).collection('Tavle').doc('--info--')
+    const ansatteRef = db.collection('Kunder').doc(data.key).collection('Ansatte').doc('--stats--')
+
+    const batch = db.batch()
+
+    batch.set(kundeRef, kundeData)
+    batch.set(brukereRef, { innsjekkCount: 0, stats: true, userCount: 0 })
+    batch.set(displayRef, { melding: '' })
+    batch.set(ansatteRef, { userCount: 0 })
+
+    const mailData = {
+      lisensKey: data.key,
+      domene: data.domene,
+      kpNavn: data.kpNavn,
+      toEmail: data.kpEpost,
+    }
+    batch.commit().then(() => {
+      handleComplete(true)
+      document.getElementById('kundeForm').reset()
+    })
   }
 
   return (
