@@ -111,7 +111,7 @@ export default function Form() {
         <input
           type='text'
           placeholder='Admin-brukernavn'
-          name='brukeravn'
+          name='brukernavn'
           ref={register}
           required
         />
