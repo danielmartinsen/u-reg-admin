@@ -51,7 +51,7 @@ export default function Form() {
     batch.set(kundeRef, kundeData)
     batch.set(brukereRef, { innsjekkCount: 0, stats: true, userCount: 0 })
     batch.set(displayRef, { melding: '' })
-    batch.set(ansatteRef, { userCount: 0 })
+    batch.set(ansatteRef, { stats: true })
 
     const mailData = {
       lisensKey: data.key,
