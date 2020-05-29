@@ -13,6 +13,16 @@ export default function Form() {
   const firebase = loadFirebase()
   const db = firebase.firestore()
 
+  function createPassword(length) {
+    var result = ''
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var charactersLength = characters.length
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    return result
+  }
+
   const onSubmit = (data) => {
     const dato = new Date()
     const idagDato = `${dato.getMonth() + 1}` + '-' + dato.getDate() + '-' + dato.getFullYear()
@@ -25,7 +35,7 @@ export default function Form() {
       (dato.getFullYear() + parseInt(data.ar))
 
     var kundeData = {
-      domene: data.domene,
+      domene: 'https://ureg.now.sh',
       fakturaadresse: data.fakturaadresse,
       kommune: data.kommune,
       kontaktperson: {
@@ -39,6 +49,10 @@ export default function Form() {
       },
       navn: data.navn,
       registrert: idagDato,
+      login: {
+        brukernavn: data.brukernavn,
+        passor: createPassword(5),
+      },
     }
 
     const kundeRef = db.collection('Kunder').doc(data.key)
@@ -96,10 +110,9 @@ export default function Form() {
         <input type='number' placeholder='Gyldighet (år)' name='ar' ref={register} required />
         <input
           type='text'
-          placeholder='Domene'
-          name='domene'
+          placeholder='Admin-brukernavn'
+          name='brukeravn'
           ref={register}
-          value='https://ureg.now.sh'
           required
         />
       </div>
