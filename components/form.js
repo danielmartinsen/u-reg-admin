@@ -43,6 +43,7 @@ export default function Form() {
 
     const kundeRef = db.collection('Kunder').doc(data.key)
     const brukereRef = db.collection('Kunder').doc(data.key).collection('Brukere').doc('--stats--')
+    const loggRef = db.collection('Kunder').doc(data.key).collection('Logg').doc('--stats--')
     const displayRef = db.collection('Kunder').doc(data.key).collection('Tavle').doc('--info--')
     const ansatteRef = db.collection('Kunder').doc(data.key).collection('Ansatte').doc('--stats--')
 
@@ -52,13 +53,8 @@ export default function Form() {
     batch.set(brukereRef, { innsjekkCount: 0, stats: true, userCount: 0 })
     batch.set(displayRef, { melding: '' })
     batch.set(ansatteRef, { stats: true })
+    batch.set(loggRef, { stats: true })
 
-    const mailData = {
-      lisensKey: data.key,
-      domene: data.domene,
-      kpNavn: data.kpNavn,
-      toEmail: data.kpEpost,
-    }
     batch.commit().then(() => {
       handleComplete(true)
       document.getElementById('kundeForm').reset()
