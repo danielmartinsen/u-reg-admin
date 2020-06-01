@@ -134,6 +134,12 @@ export default function Row({ row }) {
                   <p>
                     <b>Fakturaadresse:</b> {row.fakturaadresse}
                   </p>
+                  <p>
+                    <b>Brukernavn:</b> {row.login.brukernavn}
+                  </p>
+                  <p>
+                    <b>Passord:</b> {row.login.passord}
+                  </p>
                 </div>
 
                 <div>
