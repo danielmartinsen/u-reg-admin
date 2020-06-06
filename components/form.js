@@ -53,6 +53,7 @@ export default function Form() {
         brukernavn: data.brukernavn,
         passor: createPassword(5),
       },
+      logo: 'https://ungias.com/logodemo.png',
     }
 
     const kundeRef = db.collection('Kunder').doc(data.key)
