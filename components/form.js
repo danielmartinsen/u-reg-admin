@@ -67,7 +67,7 @@ export default function Form() {
     batch.set(kundeRef, kundeData)
     batch.set(brukereRef, { innsjekkCount: 0, stats: true, userCount: 0 })
     batch.set(displayRef, { melding: '' })
-    batch.set(ansatteRef, { stats: true })
+    batch.set(ansatteRef, { stats: true, count: 0 })
     batch.set(loggRef, { stats: true })
 
     batch.commit().then(() => {
