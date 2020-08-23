@@ -51,7 +51,7 @@ export default function Form() {
       registrert: idagDato,
       login: {
         brukernavn: data.brukernavn,
-        passor: createPassword(5),
+        passord: createPassword(5),
       },
       logo: 'https://ungias.com/logodemo.png',
     }
